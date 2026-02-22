@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Robert Betts — Links</title>
+  <meta name="description" content="Riley Betts — AI, Fintech, Writing & Code" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg:       #0a0d0f;
+      --surface:  #111518;
+      --border:   #1e2428;
+      --accent:   #c8f04d;
+      --accent2:  #4dffd4;
+      --text:     #e8ecea;
+      --muted:    #637069;
+      --hover-bg: #161c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.25rem;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    /* subtle grid texture */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* glowing orbs */
+    body::after {
+      content: '';
+      position: fixed;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(200,240,77,0.06) 0%, transparent 70%);
+      top: -150px;
+      right: -150px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .orb2 {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(77,255,212,0.05) 0%, transparent 70%);
+      bottom: -100px;
+      left: -100px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    /* Header */
+    .header {
+      text-align: left;
+      padding-bottom: 2.5rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 2rem;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .eyebrow {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+    }
+
+    .name {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(2.4rem, 8vw, 3.4rem);
+      line-height: 1.05;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+    }
+
+    .name em {
+      font-style: italic;
+      color: var(--accent2);
+    }
+
+    .bio {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 360px;
+      font-weight: 300;
+    }
+
+    /* Links */
+    .links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .link-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem 1.25rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      text-decoration: none;
+      color: var(--text);
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+      animation: fadeUp 0.6s ease both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .link-item::after {
+      content: '';
+      position: absolute;
+      left: 0; top: 0; bottom: 0;
+      width: 3px;
+      background: var(--accent);
+      transform: scaleY(0);
+      transition: transform 0.2s ease;
+      transform-origin: bottom;
+    }
+
+    .link-item:hover {
+      background: var(--hover-bg);
+      border-color: #2e3c36;
+      transform: translateX(4px);
+    }
+
+    .link-item:hover::after {
+      transform: scaleY(1);
+    }
+
+    /* staggered animation delays */
+    .link-item:nth-child(1) { animation-delay: 0.1s; }
+    .link-item:nth-child(2) { animation-delay: 0.18s; }
+    .link-item:nth-child(3) { animation-delay: 0.26s; }
+    .link-item:nth-child(4) { animation-delay: 0.34s; }
+    .link-item:nth-child(5) { animation-delay: 0.42s; }
+
+    .link-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 6px;
+      background: var(--bg);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1rem;
+    }
+
+    .link-content {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .link-label {
+      font-size: 0.78rem;
+      font-weight: 500;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+
+    .link-desc {
+      font-size: 0.68rem;
+      color: var(--muted);
+      font-weight: 300;
+      margin-top: 0.1rem;
+    }
+
+    .link-arrow {
+      font-size: 0.7rem;
+      color: var(--muted);
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .link-item:hover .link-arrow {
+      color: var(--accent);
+      transform: translateX(3px);
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 2.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.62rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      animation: fadeUp 0.6s 0.5s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(16px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .header { animation-delay: 0s; }
+  </style>
+</head>
+<body>
+  <div class="orb2"></div>
+  <div class="container">
+
+    <header class="header">
+      <p class="eyebrow">// links</p>
+      <h1 class="name">Robert<br><em>Betts</em></h1>
+      <p class="bio">AI practitioner, fintech builder & writer. Exploring the intersection of intelligence, finance, and code.</p>
+    </header>
+
+    <nav class="links" aria-label="Personal links">
+
+      <a class="link-item" href="https://rileybetts.ai/" target="_blank" rel="noopener">
+        <div class="link-icon">🌐</div>
+        <div class="link-content">
+          <div class="link-label">rileybetts.ai</div>
+          <div class="link-desc">Riley Betts website</div>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <a class="link-item" href="https://www.linkedin.com/in/robertwbetts/" target="_blank" rel="noopener">
+        <div class="link-icon">💼</div>
+        <div class="link-content">
+          <div class="link-label">LinkedIn</div>
+          <div class="link-desc">Professional profile</div>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <a class="link-item" href="https://github.com/robertbetts" target="_blank" rel="noopener">
+        <div class="link-icon">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#e8ecea" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+        </div>
+        <div class="link-content">
+          <div class="link-label">GitHub</div>
+          <div class="link-desc">Open source projects &amp; code</div>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <a class="link-item" href="https://fintechforge.substack.com/" target="_blank" rel="noopener">
+        <div class="link-icon">✉️</div>
+        <div class="link-content">
+          <div class="link-label">Fintech Forge — Substack</div>
+          <div class="link-desc">Fintech related articles and insights</div>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+      <a class="link-item" href="https://medium.com/@robert-betts" target="_blank" rel="noopener">
+        <div class="link-icon">✍️</div>
+        <div class="link-content">
+          <div class="link-label">Medium</div>
+          <div class="link-desc">Long-form articles &amp; essays</div>
+        </div>
+        <span class="link-arrow">→</span>
+      </a>
+
+    </nav>
+
+    <footer class="footer">
+      © 2025 Robert Betts
+    </footer>
+
+  </div>
+</body>
+</html>
